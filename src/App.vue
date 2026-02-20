@@ -222,36 +222,42 @@
         </div>
 
         <div class="p-6 space-y-6">
-          <div class="space-y-3">
-            <input
-              v-model="newItemName"
-              type="text"
-              placeholder="Nome do item"
-              class="w-full bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-emerald-500"
-            />
-            <div class="flex gap-2">
-              <select
-                v-model="newItemCurrency"
-                class="bg-stone-950 border border-stone-800 rounded-xl px-3 text-xs font-black text-stone-400"
-              >
-                <option value="USD">US$</option>
-                <option value="ARS">$ ARS</option>
-                <option value="BRL">R$</option>
-              </select>
+          <div class="space-y-4">
+            <div class="space-y-3">
               <input
-                v-model.number="newItemPrice"
-                type="number"
-                step="any"
-                placeholder="Preço"
-                class="flex-1 bg-stone-950 border border-stone-800 rounded-xl px-4 py-3 text-sm text-white outline-none"
+                v-model="newItemName"
+                type="text"
+                placeholder="Nome do item (ex: iPhone)"
+                class="w-full bg-stone-950 border border-stone-800 rounded-2xl px-4 py-4 text-base text-white outline-none focus:border-emerald-500 transition-all placeholder:text-stone-700"
               />
-              <button
-                @click="addItem"
-                class="bg-emerald-500 text-stone-950 w-12 rounded-xl font-black"
-              >
-                +
-              </button>
+
+              <div class="grid grid-cols-3 gap-3">
+                <select
+                  v-model="newItemCurrency"
+                  class="bg-stone-950 border border-stone-800 rounded-2xl px-3 text-sm font-black text-stone-400 outline-none focus:border-emerald-500 appearance-none text-center"
+                >
+                  <option value="USD">US$</option>
+                  <option value="ARS">$ ARS</option>
+                  <option value="BRL">R$</option>
+                </select>
+                <input
+                  v-model.number="newItemPrice"
+                  type="number"
+                  step="any"
+                  inputmode="decimal"
+                  placeholder="Preço"
+                  class="col-span-2 bg-stone-950 border border-stone-800 rounded-2xl px-4 py-4 text-base text-white outline-none focus:border-emerald-500 transition-all placeholder:text-stone-700"
+                />
+              </div>
             </div>
+
+            <button
+              @click="addItem"
+              class="w-full bg-emerald-500 active:bg-emerald-600 text-stone-950 h-16 rounded-2xl font-black uppercase tracking-widest text-sm shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 transition-transform active:scale-[0.98]"
+            >
+              <span>Adicionar à Lista</span>
+              <span class="text-xl">+</span>
+            </button>
           </div>
 
           <div v-if="shoppingList.length > 0" class="space-y-2">
