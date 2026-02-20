@@ -70,23 +70,34 @@ export class ShoppingListCalculator {
 public static generateWhatsAppSummary(items: ShoppingItem[], rates: Record<string, ExchangeRate>): string {
     if (items.length === 0) return "";
 
-    let text = "🛒 *Resumo de Compras*\n\n";
+    let text = "🛒 *Resumo de Compras - Frontier Exchange*\n\n";
+    
+    // Mapeamento de símbolos para evitar lógica repetitiva
+    const symbols: Record<string, string> = {
+        'USD': 'US$',
+        'ARS': '$ (ARS)',
+        'BRL': 'R$'
+    };
+
     items.forEach(item => {
-        text += `• ${item.name}: ${item.price.toFixed(2)}\n`;
+        const symbol = symbols[item.currencyCode] || '';
+        text += `• ${item.name}: ${symbol} ${item.price.toFixed(2)}\n`;
     });
 
     const totalBRL = this.calculateTotalInCurrency(items, rates, 'BRL');
-    
-    // Verificação de segurança para o TS
     const usdRateObj = rates['USD'];
     const arsRateObj = rates['ARS'];
     
-    const usdRate = usdRateObj ? CurrencyCalculator.getActiveRate(usdRateObj) : 0;
-    const arsRate = arsRateObj ? CurrencyCalculator.getActiveRate(arsRateObj) : 0;
+    const usdActive = usdRateObj ? CurrencyCalculator.getActiveRate(usdRateObj) : 0;
+    const arsActive = arsRateObj ? CurrencyCalculator.getActiveRate(arsRateObj) : 0;
 
-    text += `\n*Total: R$ ${totalBRL.toFixed(2)}*\n`;
-    text += `Dólar: R$ ${usdRate.toFixed(2)} | Peso: R$ ${arsRate.toFixed(4)}`;
+    text += "\n--- TOTAL ---\n";
+    text += `🇧🇷 *Total em Real: R$ ${totalBRL.toFixed(2)}*\n\n`;
+    text += `📌 *Câmbios aplicados:*\n`;
+    text += `Dólar: R$ ${usdActive.toFixed(2)}\n`;
+    text += `Peso: R$ ${arsActive.toFixed(4)}`;
 
     return encodeURIComponent(text);
 }
+
 }
