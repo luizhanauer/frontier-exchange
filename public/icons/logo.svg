@@ -1,0 +1,32 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="green_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#BEF264" />
+      <stop offset="100%" stop-color="#65A30D" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(256, 256)">
+    <g transform="translate(0, -140)">
+      <path d="M-140 0 H 140 M 105 -35 L 145 0 L 105 35" 
+        stroke="url(#green_gradient)" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    
+    <g transform="translate(0, 140)">
+      <path d="M 140 0 H -140 M -105 -35 L -145 0 L -105 35" 
+        stroke="url(#green_gradient)" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <g transform="translate(256, 256)">
+    <rect x="-110" y="-65" width="220" height="130" rx="12" fill="#121212" stroke="url(#green_gradient)" stroke-width="8"/>
+    
+    <rect x="-90" y="-45" width="180" height="90" rx="4" stroke="#BEF264" stroke-width="2" opacity="0.5"/>
+    
+    <g transform="scale(0.7)">
+      <path d="M0 -45 V 45" stroke="#BEF264" stroke-width="20" stroke-linecap="round"/>
+      <path d="M30 -25 H -10 C -20 -25 -25 -20 -25 -15 C -25 -10 -20 -5 -10 -5 H 10 C 20 -5 25 0 25 5 C 25 10 20 15 10 15 H -30" 
+        stroke="#BEF264" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </g>
+  </g>
+</svg>
