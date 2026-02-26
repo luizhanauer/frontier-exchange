@@ -2,6 +2,12 @@ name: Generate Portfolio Screenshots
 
 on: 
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Deploy to GitHub Pages"]
+    types:
+      - completed
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -50,6 +56,8 @@ jobs:
 
             await takeShot(1280, 720, 'screenshot.png');
             await takeShot(1280, 520, 'screenshot_featured.png');
+            await takeShot(1000, 600, 'screenshot-desktop.png');
+            await takeShot(600, 1000, 'screenshot-mobile.png');
 
             await browser.close();
           })();
